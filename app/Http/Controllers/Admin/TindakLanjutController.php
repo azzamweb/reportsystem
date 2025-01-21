@@ -143,7 +143,7 @@ class TindakLanjutController extends Controller
     $tindakLanjut->delete();
 
     // Redirect dengan pesan sukses
-    return redirect()->route('tindaklanjut.index')->with('success', 'Tindak Lanjut berhasil dihapus.');
+    return redirect()->route('dashboard')->with('success', 'Tindak Lanjut berhasil dihapus.');
 }
 
 

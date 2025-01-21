@@ -7,8 +7,21 @@
 
     <div class="container py-4">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-primary text-white" style="display: flex
+;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;">
                 <h5 class="mb-0">Form Edit Tindak Lanjut</h5>
+<!-- hapus tindak lanjut -->
+                <form action="{{ route('tindaklanjut.destroy', $tindaklanjut->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus tindak lanjut ini?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Hapus</button>
+    </form>
+
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('tindaklanjut.update', $tindaklanjut->id) }}" enctype="multipart/form-data">
