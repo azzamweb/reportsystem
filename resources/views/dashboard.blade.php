@@ -9,10 +9,7 @@
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Daftar Laporan</h5>
-                <!-- Tombol Tambah Laporan -->
-                <a href="{{ route('laporans.create') }}" class="btn btn-light btn-sm">
-                    Tambah Laporan
-                </a>
+                <a href="{{ route('laporans.create') }}" class="btn btn-light btn-sm">Tambah Laporan</a>
             </div>
             <div class="card-body">
                 <!-- Filter Dropdown -->
@@ -56,8 +53,8 @@
                 </div>
 
                 <!-- Data Table -->
-                <div class="table-responsive mt-4">
-                    <table id="laporanTable" class="table table-hover table-sm align-middle" style="font-size: 0.875rem;">
+                <div class="table-responsive">
+                    <table id="laporanTable" class="table table-hover table-striped table-sm align-middle" style="font-size: 0.875rem;">
                         <thead class="table-light">
                             <tr>
                                 <th class="text-center">#</th>
@@ -117,32 +114,26 @@
 
     <script>
         $(document).ready(function () {
-            var table = $('#laporanTable').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
+            $('#laporanTable').DataTable({
+                responsive: true,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
                 },
-                "pageLength": 10,
-                "responsive": true
+                pageLength: 10
             });
 
-            // Filter Tahun Pengajuan
+            // Filters
             $('#filterTahun').on('change', function () {
-                table.column(1).search(this.value).draw();
+                $('#laporanTable').DataTable().column(1).search(this.value).draw();
             });
-
-            // Filter Kecamatan
             $('#filterKecamatan').on('change', function () {
-                table.column(5).search(this.value).draw();
+                $('#laporanTable').DataTable().column(5).search(this.value).draw();
             });
-
-            // Filter Desa
             $('#filterDesa').on('change', function () {
-                table.column(6).search(this.value).draw();
+                $('#laporanTable').DataTable().column(6).search(this.value).draw();
             });
-
-            // Filter Jenis Laporan
             $('#filterJenis').on('change', function () {
-                table.column(7).search(this.value).draw();
+                $('#laporanTable').DataTable().column(7).search(this.value).draw();
             });
         });
     </script>
