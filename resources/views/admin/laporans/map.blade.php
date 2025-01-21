@@ -92,23 +92,30 @@
             addMarkers(laporans);
 
             function filterData() {
-                var kecamatanId = document.getElementById('filterKecamatan').value;
-                var desaId = document.getElementById('filterDesa').value;
-                var jenisId = document.getElementById('filterJenis').value;
-                var status = document.getElementById('filterStatus').value;
+    var kecamatanId = document.getElementById('filterKecamatan').value;
+    var desaId = document.getElementById('filterDesa').value;
+    var jenisId = document.getElementById('filterJenis').value;
+    var status = document.getElementById('filterStatus').value; // Ambil nilai dari filter status
 
-                var filteredLaporans = laporans.filter(function (laporan) {
-                    return (
-                        (!kecamatanId || laporan.kecamatan_id == kecamatanId) &&
-                        (!desaId || laporan.desa_id == desaId) &&
-                        (!jenisId || laporan.jenis_laporan_id == jenisId) &&
-                        (!status || (status === 'complete' ? laporan.tindakLanjut : !laporan.tindakLanjut))
-                    );
-                });
+    var filteredLaporans = laporans.filter(function (laporan) {
+        var matchStatus = true;
 
-                addMarkers(filteredLaporans);
-            }
+        if (status === "complete") {
+            matchStatus = laporan.tindak_lanjut !== null;
+        } else if (status === "incomplete") {
+            matchStatus = laporan.tindak_lanjut === null;
+        }
 
+        return (
+            matchStatus &&
+            (!kecamatanId || laporan.kecamatan_id == kecamatanId) &&
+            (!desaId || laporan.desa_id == desaId) &&
+            (!jenisId || laporan.jenis_laporan_id == jenisId)
+        );
+    });
+
+    addMarkers(filteredLaporans);
+}
             document.getElementById('filterKecamatan').addEventListener('change', function () {
                 var kecamatanId = this.value;
                 var desaDropdown = document.getElementById('filterDesa');
