@@ -116,6 +116,10 @@
         $(document).ready(function () {
             $('#laporanTable').DataTable({
                 responsive: true,
+                dom: 'Bfrtip', // Menambahkan tombol export
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                 language: {
                     url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
                 },
