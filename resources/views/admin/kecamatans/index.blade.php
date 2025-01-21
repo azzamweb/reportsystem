@@ -33,7 +33,7 @@
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">
                                             <!-- Tombol Edit -->
-                                            <a href="{{ route('kecamatans.edit', $kecamatan) }}" class="btn btn-outline-primary btn-sm">
+                                            <a href="{{ route('feature.unavailable') }}" class="btn btn-outline-primary btn-sm">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
                                             <!-- Tombol Hapus -->
