@@ -6,7 +6,7 @@
         </a>
 
         <!-- Hamburger (Toggler) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" id="navbarToggler">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -28,11 +28,11 @@
                 </li>
 
                 <!-- Data Pendukung Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ request()->routeIs('kecamatans.*', 'desas.*', 'jenis_laporans.*') ? 'active fw-bold text-primary' : '' }}" href="#" id="dataPendukungDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown" id="dataPendukungDropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('kecamatans.*', 'desas.*', 'jenis_laporans.*') ? 'active fw-bold text-primary' : '' }}" href="#" role="button">
                         <i class="bi bi-database"></i> {{ __('Data Pendukung') }}
                     </a>
-                    <ul class="dropdown-menu shadow-sm" aria-labelledby="dataPendukungDropdown">
+                    <ul class="dropdown-menu shadow-sm">
                         @if(Route::has('kecamatans.index'))
                         <li><a class="dropdown-item" href="{{ route('kecamatans.index') }}"><i class="bi bi-building"></i> {{ __('Manage Kecamatan') }}</a></li>
                         @endif
@@ -49,11 +49,11 @@
                 </li>
 
                 <!-- Tools Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ request()->routeIs('users.*', 'profile.*') ? 'active fw-bold text-primary' : '' }}" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown" id="toolsDropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('users.*', 'profile.*') ? 'active fw-bold text-primary' : '' }}" href="#" role="button">
                         <i class="bi bi-tools"></i> {{ __('Tools') }}
                     </a>
-                    <ul class="dropdown-menu shadow-sm" aria-labelledby="toolsDropdown">
+                    <ul class="dropdown-menu shadow-sm">
                         @if(Route::has('users.index'))
                         <li><a class="dropdown-item" href="{{ route('feature.unavailable') }}"><i class="bi bi-people"></i> {{ __('Manage Users') }}</a></li>
                         @endif
@@ -66,11 +66,11 @@
 
             <!-- User Dropdown -->
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-primary fw-bold" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown" id="userDropdown">
+                    <a class="nav-link dropdown-toggle text-primary fw-bold" href="#" role="button">
                         <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
                         <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person"></i> {{ __('Profile') }}</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
@@ -85,4 +85,37 @@
     </div>
 </nav>
 
+<!-- Custom CSS -->
+<style>
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
 
+    .navbar .dropdown-menu {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<!-- Custom JS -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggler = document.getElementById('navbarToggler');
+        const navbar = document.getElementById('navbarNav');
+
+        toggler.addEventListener('click', () => {
+            navbar.classList.toggle('collapse');
+        });
+    });
+</script>
