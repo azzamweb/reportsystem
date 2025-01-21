@@ -9,6 +9,8 @@ use App\Models\Kecamatan;
 use App\Models\Desa; 
 use App\Models\Laporan;
 use App\Models\JenisLaporan;
+use App\Models\TindakLanjut;
+
 
 class LaporanController extends Controller
 {
@@ -111,8 +113,9 @@ public function map()
     $kecamatans = Kecamatan::all(); // Data kecamatan
     $jenisLaporans = JenisLaporan::all(); // Data jenis laporan
     $desas = Desa::all();
-    $laporans = Laporan::with(['kecamatan', 'desa', 'jenisLaporan'])->get();
+    $laporans = Laporan::with(['kecamatan', 'desa', 'jenisLaporan','tindakLanjut'])->get();
     return view('admin.laporans.map', compact('laporans', 'kecamatans','jenisLaporans','desas'));
+    
 }
 
 public function autocomplete(Request $request)
@@ -144,5 +147,7 @@ public function autocomplete(Request $request)
     });
 
     return response()->json($data);
+    
 }
+
 }
