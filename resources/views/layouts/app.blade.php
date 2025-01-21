@@ -49,7 +49,7 @@
 
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-        <script src="https://unpkg.com/leaflet-gesture-handling"></script>
+       
         
         
         <!-- Tambahkan ini di file layout utama -->

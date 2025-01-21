@@ -50,12 +50,17 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-providers/leaflet-providers.js"></script>
+    <script src="https://unpkg.com/leaflet-gesture-handling"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            var map = L.map('map').setView([1.3636904935814762, 102.05547871151775], 10,);
+            var map = L.map('map', {
+        gestureHandling: true // Aktifkan Gesture Handling
+    }).setView([1.3636904935814762, 102.05547871151775], 10,);
             L.tileLayer.provider('Esri.WorldImagery').addTo(map);
-            gestureHandling: true
+            
+            
+            
             var laporans = @json($laporans);
             var markerGroup = L.layerGroup().addTo(map);
 
