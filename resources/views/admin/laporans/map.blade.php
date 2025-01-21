@@ -1,13 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="fw-semibold text-xl text-dark">
-            {{ __('Peta Sebaran Laporan') }}
-        </h2>
-    </x-slot>
-
-    <div class="container py-4">
+    <!-- Peta dengan tampilan full width -->
+    <div class="container-fluid px-0">
         <!-- Filter Dropdown -->
-        <div class="row mb-3">
+        <div class="row g-3 px-3 py-2 bg-light filter-dropdown">
             <div class="col-md-4">
                 <label for="filterKecamatan" class="form-label">Kecamatan</label>
                 <select id="filterKecamatan" class="form-select">
@@ -38,7 +33,16 @@
         </div>
 
         <!-- Peta -->
-        <div id="map" style="height: 500px; border-radius: 8px;"></div>
+        <div id="map-container" class="row no-gutters" style="height: calc(100vh - 72px);">
+            <div id="map" class="col-12 col-lg-8" style="height: 100%; width:100%"></div>
+            <div id="map-info" class="col-12 col-lg-4 bg-white p-4 d-flex flex-column justify-content-center">
+                <h2 class="text-primary fw-bold">Judul Peta</h2>
+                <p class="text-muted">
+                    Ini adalah keterangan dummy untuk peta. Anda dapat mengganti bagian ini dengan informasi sebenarnya
+                    sesuai kebutuhan laporan.
+                </p>
+            </div>
+        </div>
     </div>
 
     <!-- Tambahkan Leaflet.js -->
@@ -48,78 +52,119 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        var map = L.map('map').setView([1.3636904935814762, 102.05547871151775], 10);
-        L.tileLayer.provider('Esri.WorldImagery').addTo(map);
+            var map = L.map('map').setView([1.3636904935814762, 102.05547871151775], 10);
+            L.tileLayer.provider('Esri.WorldImagery').addTo(map);
 
-        var laporans = @json($laporans);
-        var markerGroup = L.layerGroup().addTo(map);
+            var laporans = @json($laporans);
+            var markerGroup = L.layerGroup().addTo(map);
 
-        function addMarkers(filteredLaporans) {
-            markerGroup.clearLayers();
-            filteredLaporans.forEach(function (laporan) {
-                if (laporan.titik_koordinat && laporan.jenis_laporan) {
-                    var koordinat = laporan.titik_koordinat.split(',');
+            function addMarkers(filteredLaporans) {
+                markerGroup.clearLayers();
+                filteredLaporans.forEach(function (laporan) {
+                    if (laporan.titik_koordinat && laporan.jenis_laporan) {
+                        var koordinat = laporan.titik_koordinat.split(',');
 
-                    var customIcon = L.icon({
-                        iconUrl: `/storage/${laporan.jenis_laporan.gambar}`,
-                        iconSize: [50, 50],
-                        iconAnchor: [20, 40],
-                        popupAnchor: [0, -40]
-                    });
-
-                    var marker = L.marker([parseFloat(koordinat[0]), parseFloat(koordinat[1])], { icon: customIcon })
-                        .bindPopup(`
-                            <strong>${laporan.nama_kk_penerima}</strong><br>
-                            <em>${laporan.kecamatan ? laporan.kecamatan.name : '-'}, ${laporan.desa ? laporan.desa.name : '-'}</em><br>
-                            <a href="/laporans/${laporan.id}" class="">Detail</a>
-                        `);
-
-                    markerGroup.addLayer(marker);
-                }
-            });
-        }
-
-        addMarkers(laporans);
-
-        function filterData() {
-            var kecamatanId = document.getElementById('filterKecamatan').value;
-            var desaId = document.getElementById('filterDesa').value;
-            var jenisId = document.getElementById('filterJenis').value;
-
-            var filteredLaporans = laporans.filter(function (laporan) {
-                return (
-                    (!kecamatanId || laporan.kecamatan_id == kecamatanId) &&
-                    (!desaId || laporan.desa_id == desaId) &&
-                    (!jenisId || laporan.jenis_laporan_id == jenisId)
-                );
-            });
-
-            addMarkers(filteredLaporans);
-        }
-
-        document.getElementById('filterKecamatan').addEventListener('change', function () {
-            var kecamatanId = this.value;
-            var desaDropdown = document.getElementById('filterDesa');
-            desaDropdown.innerHTML = '<option value="">Semua Desa</option>';
-
-            if (kecamatanId) {
-                fetch(`/get-desas/${kecamatanId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(function (desa) {
-                            var option = document.createElement('option');
-                            option.value = desa.id;
-                            option.textContent = desa.name;
-                            desaDropdown.appendChild(option);
+                        var customIcon = L.icon({
+                            iconUrl: `/storage/${laporan.jenis_laporan.gambar}`,
+                            iconSize: [50, 50],
+                            iconAnchor: [20, 40],
+                            popupAnchor: [0, -40]
                         });
-                    });
+
+                        var marker = L.marker([parseFloat(koordinat[0]), parseFloat(koordinat[1])], { icon: customIcon })
+                            .bindPopup(`
+                                <strong>${laporan.nama_kk_penerima}</strong><br>
+                                <em>${laporan.kecamatan ? laporan.kecamatan.name : '-'}, ${laporan.desa ? laporan.desa.name : '-'}</em><br>
+                                <a href="/laporans/${laporan.id}" class="">Detail</a>
+                            `);
+
+                        markerGroup.addLayer(marker);
+                    }
+                });
             }
 
-            filterData();
-        });
+            addMarkers(laporans);
 
-        document.getElementById('filterDesa').addEventListener('change', filterData);
-        document.getElementById('filterJenis').addEventListener('change', filterData);
-    });
+            function filterData() {
+                var kecamatanId = document.getElementById('filterKecamatan').value;
+                var desaId = document.getElementById('filterDesa').value;
+                var jenisId = document.getElementById('filterJenis').value;
+
+                var filteredLaporans = laporans.filter(function (laporan) {
+                    return (
+                        (!kecamatanId || laporan.kecamatan_id == kecamatanId) &&
+                        (!desaId || laporan.desa_id == desaId) &&
+                        (!jenisId || laporan.jenis_laporan_id == jenisId)
+                    );
+                });
+
+                addMarkers(filteredLaporans);
+            }
+
+            document.getElementById('filterKecamatan').addEventListener('change', function () {
+                var kecamatanId = this.value;
+                var desaDropdown = document.getElementById('filterDesa');
+                desaDropdown.innerHTML = '<option value="">Semua Desa</option>';
+
+                if (kecamatanId) {
+                    fetch(`/get-desas/${kecamatanId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            data.forEach(function (desa) {
+                                var option = document.createElement('option');
+                                option.value = desa.id;
+                                option.textContent = desa.name;
+                                desaDropdown.appendChild(option);
+                            });
+                        });
+                }
+
+                filterData();
+            });
+
+            document.getElementById('filterDesa').addEventListener('change', filterData);
+            document.getElementById('filterJenis').addEventListener('change', filterData);
+        });
     </script>
+
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            border-radius: 0;
+        }
+
+        #map-info {
+            display: none!important;
+        }
+
+        @media print {
+            nav, .header {
+                display: none !important;
+            }
+
+            #map-container {
+                display: flex;
+                flex-direction: row;
+                height: 70vh !important;
+            }
+
+            #map {
+                height: 100%;
+                width: 70% !important;
+            }
+
+            #map-info {
+                width: 30%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 1rem;
+                font-size: 10px;
+            }
+
+            footer {
+                display: none;
+            }
+        }
+    </style>
 </x-app-layout>
