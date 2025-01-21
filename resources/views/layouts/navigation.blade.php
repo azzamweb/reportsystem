@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
         <!-- Logo dan Nama Aplikasi -->
-        <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="{{ route('dashboard') }}">
+        <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="/">
             <img src="{{ asset('images/logo.png') }}" alt="Report System Logo" style="height: 50px;">
             <span class="ms-2">Report System</span> <!-- Tambahkan nama aplikasi di sini -->
         </a>

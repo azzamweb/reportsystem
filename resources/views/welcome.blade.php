@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sistem Pelaporan Modern</title>
+        <title>Sistem Pelaporan</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,34 +18,34 @@
 
             body {
                 font-family: 'Inter', sans-serif;
+                min-height: 100vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                align-items: center;
-                min-height: 100vh;
-                background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
-                color: #2d3748;
+                background: linear-gradient(135deg, #1a202c, #2d3748, #4a5568);
+                color: #e2e8f0;
             }
 
             header {
                 text-align: center;
-                margin-top: 50px;
+                padding: 50px 20px;
             }
 
             header img {
-                width: 150px;
+                width: 120px;
                 margin-bottom: 20px;
             }
 
             header h1 {
                 font-size: 2.5rem;
                 font-weight: 700;
-                color: #2b6cb0;
+                color: #63b3ed;
+                margin-bottom: 10px;
             }
 
             header p {
-                font-size: 1rem;
-                color: #4a5568;
+                font-size: 1.125rem;
+                color: #a0aec0;
             }
 
             main {
@@ -59,61 +59,73 @@
             }
 
             main h2 {
-                font-size: 2rem;
-                font-weight: 600;
-                margin-bottom: 20px;
-                color: #2c5282;
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 15px;
+                color: #81e6d9;
             }
 
             main p {
                 font-size: 1.125rem;
-                color: #4a5568;
+                color: #cbd5e0;
                 margin-bottom: 30px;
                 max-width: 600px;
             }
 
             .cta-buttons {
                 display: flex;
-                gap: 20px;
+                gap: 15px;
             }
 
             .cta-buttons a {
                 text-decoration: none;
-                padding: 12px 24px;
+                padding: 14px 28px;
                 font-size: 1rem;
                 font-weight: 600;
-                color: #fff;
-                background: #3182ce;
+                color: #1a202c;
+                background: #63b3ed;
                 border-radius: 8px;
-                transition: background-color 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
 
             .cta-buttons a:hover {
-                background: #2b6cb0;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+                background: #3182ce;
             }
 
             footer {
                 text-align: center;
                 padding: 20px;
                 font-size: 0.875rem;
-                background: #2c5282;
-                color: #fff;
+                background: #2d3748;
+                color: #e2e8f0;
                 width: 100%;
+            }
+
+            footer a {
+                color: #81e6d9;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
             }
         </style>
     </head>
     <body>
         <header>
             <img src="{{ asset('images/logo.png') }}" alt="Logo Sistem Pelaporan">
-            <h1>Report System</h1>
-            <p>Mengelola laporan lebih mudah dan efisien.</p>
+            <h1>Sistem Pelaporan</h1>
+            <p>Meningkatkan kemudahan manajemen laporan dengan platform digital.</p>
         </header>
 
         <main>
             <h2>Selamat Datang!</h2>
             <p>
-                Akses sistem kami untuk membuat laporan, menindaklanjuti, dan memantau progres laporan secara real-time
-                dengan antarmuka yang intuitif dan modern.
+                Gunakan platform kami untuk mengelola laporan, memantau progres, dan membuat tindak lanjut secara efisien dan terorganisir.
             </p>
             <div class="cta-buttons">
                 @auth
@@ -128,7 +140,7 @@
         </main>
 
         <footer>
-            &copy; {{ date('Y') }} Report System. by <a href="https://hermanspace.id" style="color: white">hspace</a>
+            &copy; {{ date('Y') }} Sistem Pelaporan. by: <a href="https://hermanspace.id">hspace</a>.
         </footer>
     </body>
 </html>
