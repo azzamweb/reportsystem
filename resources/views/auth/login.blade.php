@@ -49,9 +49,9 @@
 
                     <!-- Forgot Password and Submit Button -->
                     <div class="d-flex justify-content-between align-items-center">
-                        @if (Route::has('password.request'))
+                        <!-- @if (Route::has('password.request'))
                             <a class="text-decoration-none text-primary small" href="{{ route('password.request') }}">Forgot your password?</a>
-                        @endif
+                        @endif -->
                         <button type="submit" class="btn btn-primary">Log in</button>
                     </div>
                 </form>
