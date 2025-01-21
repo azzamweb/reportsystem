@@ -128,7 +128,7 @@
         </main>
 
         <footer>
-            &copy; {{ date('Y') }} Sistem Pelaporan. Dibangun dengan teknologi modern.
+            &copy; {{ date('Y') }} Report System. All rights reserved.
         </footer>
     </body>
 </html>
