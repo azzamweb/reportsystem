@@ -2,9 +2,7 @@
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand fw-bold text-primary" href="{{ route('dashboard') }}">
-        <img src="{{ asset('images/logo.png') }}" alt="Report System Logo" style="height: 100px;">
-
-      
+            <img src="{{ asset('images/logo.png') }}" alt="Report System Logo" style="height: 50px;">
         </a>
 
         <!-- Hamburger (Toggler) -->
@@ -22,13 +20,7 @@
                     </a>
                 </li>
 
-                <!-- <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('tindaklanjut.index') ? 'active fw-bold text-primary' : '' }}" href="{{ route('tindaklanjut.index') }}">
-                        <i class="bi bi-cardlist"></i> {{ __('Tindak Lanjut') }}
-                    </a>
-                </li> -->
-
-                <!-- Peta sebaran -->
+                <!-- Peta Sebaran -->
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('laporans.map') ? 'active fw-bold text-primary' : '' }}" href="{{ route('laporans.map') }}">
                         <i class="bi bi-map"></i> {{ __('Peta Sebaran') }}
@@ -42,32 +34,16 @@
                     </a>
                     <ul class="dropdown-menu shadow-sm" aria-labelledby="dataPendukungDropdown">
                         @if(Route::has('kecamatans.index'))
-                            <li>
-                                <a class="dropdown-item" href="{{ route('kecamatans.index') }}">
-                                    <i class="bi bi-building"></i> {{ __('Manage Kecamatan') }}
-                                </a>
-                            </li>
+                        <li><a class="dropdown-item" href="{{ route('kecamatans.index') }}"><i class="bi bi-building"></i> {{ __('Manage Kecamatan') }}</a></li>
                         @endif
                         @if(Route::has('desas.index'))
-                            <li>
-                                <a class="dropdown-item" href="{{ route('desas.index') }}">
-                                    <i class="bi bi-tree"></i> {{ __('Manage Desa') }}
-                                </a>
-                            </li>
+                        <li><a class="dropdown-item" href="{{ route('desas.index') }}"><i class="bi bi-tree"></i> {{ __('Manage Desa') }}</a></li>
                         @endif
                         @if(Route::has('jenis_laporans.index'))
-                            <li>
-                                <a class="dropdown-item" href="{{ route('jenis_laporans.index') }}">
-                                    <i class="bi bi-card-list"></i> {{ __('Manage Jenis Laporan') }}
-                                </a>
-                            </li>
+                        <li><a class="dropdown-item" href="{{ route('jenis_laporans.index') }}"><i class="bi bi-card-list"></i> {{ __('Manage Jenis Laporan') }}</a></li>
                         @endif
                         @if(Route::has('sumber_dana.index'))
-                            <li>
-                                <a class="dropdown-item" href="{{ route('sumber_dana.index') }}">
-                                    <i class="bi bi-card-list"></i> {{ __('Sumber Dana') }}
-                                </a>
-                            </li>
+                        <li><a class="dropdown-item" href="{{ route('sumber_dana.index') }}"><i class="bi bi-card-list"></i> {{ __('Sumber Dana') }}</a></li>
                         @endif
                     </ul>
                 </li>
@@ -79,18 +55,10 @@
                     </a>
                     <ul class="dropdown-menu shadow-sm" aria-labelledby="toolsDropdown">
                         @if(Route::has('users.index'))
-                            <li>
-                                <a class="dropdown-item" href="{{ route('feature.unavailable') }}">
-                                    <i class="bi bi-people"></i> {{ __('Manage Users') }}
-                                </a>
-                            </li>
+                        <li><a class="dropdown-item" href="{{ route('feature.unavailable') }}"><i class="bi bi-people"></i> {{ __('Manage Users') }}</a></li>
                         @endif
                         @if(Route::has('profile.edit'))
-                            <li>
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                    <i class="bi bi-person"></i> {{ __('Profile') }}
-                                </a>
-                            </li>
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person"></i> {{ __('Profile') }}</a></li>
                         @endif
                     </ul>
                 </li>
@@ -103,17 +71,11 @@
                         <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                <i class="bi bi-person"></i> {{ __('Profile') }}
-                            </a>
-                        </li>
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person"></i> {{ __('Profile') }}</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="dropdown-item">
-                                    <i class="bi bi-box-arrow-right"></i> {{ __('Log Out') }}
-                                </button>
+                                <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> {{ __('Log Out') }}</button>
                             </form>
                         </li>
                     </ul>
