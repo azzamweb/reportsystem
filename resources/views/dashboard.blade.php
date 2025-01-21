@@ -118,7 +118,21 @@
                 responsive: true,
                 dom: 'Bfrtip', // Menambahkan tombol export
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="bi bi-file-earmark-excel"></i> Excel',
+                        className: 'btn btn-success btn-sm'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="bi bi-file-earmark-pdf"></i> PDF',
+                        className: 'btn btn-danger btn-sm'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="bi bi-printer"></i> Print',
+                        className: 'btn btn-secondary btn-sm'
+                    }
                 ],
                 language: {
                     url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
