@@ -67,11 +67,22 @@ public function edit($id)
     }
 
     public function destroy(JenisLaporan $jenisLaporan)
-    {
-        if ($jenisLaporan->gambar) {
-            \Storage::delete($jenisLaporan->gambar);
-        }
-        $jenisLaporan->delete();
-        return redirect()->route('jenis_laporans.index')->with('success', 'Jenis Laporan berhasil dihapus.');
+{
+    // Periksa apakah jenis laporan memiliki relasi dengan laporan
+    if ($jenisLaporan->laporans()->exists()) {
+        return redirect()->route('jenis_laporans.index')
+            ->with('error', 'Jenis Laporan tidak dapat dihapus karena masih digunakan dalam laporan.');
     }
+
+    // Hapus gambar jika ada
+    if ($jenisLaporan->gambar) {
+        \Storage::delete($jenisLaporan->gambar);
+    }
+
+    // Hapus data jenis laporan
+    $jenisLaporan->delete();
+
+    return redirect()->route('jenis_laporans.index')
+        ->with('success', 'Jenis Laporan berhasil dihapus.');
+}
 }

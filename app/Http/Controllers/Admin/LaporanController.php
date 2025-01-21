@@ -150,4 +150,23 @@ public function autocomplete(Request $request)
     
 }
 
+public function destroy(Laporan $laporan)
+{
+    // Hapus file gambar laporan jika ada
+    if ($laporan->foto) {
+        \Storage::delete($laporan->foto);
+    }
+
+    // Periksa jika laporan memiliki relasi dengan tindak lanjut
+    if ($laporan->tindakLanjut) {
+        return redirect()->route('dashboard')->with('error', 'Laporan tidak dapat dihapus karena memiliki tindak lanjut.');
+    }
+
+    // Hapus laporan
+    $laporan->delete();
+
+    return redirect()->route('dashboard')->with('success', 'Laporan berhasil dihapus.');
+}
+
+
 }

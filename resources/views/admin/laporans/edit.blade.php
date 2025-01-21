@@ -7,8 +7,21 @@
 
     <div class="container py-4">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-primary text-white " style="display: flex
+;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;">
                 <h5 class="mb-0">Update Laporan</h5>
+
+                <!-- Tombol Hapus -->
+                <form action="{{ route('laporans.destroy', $laporan->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus laporan ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus Laporan</button>
+                        </form>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('laporans.update', $laporan->id) }}" enctype="multipart/form-data">
@@ -129,6 +142,9 @@
                     <div class="d-flex justify-content-end">
                         <a href="{{ route('laporans.index') }}" class="btn btn-secondary me-2">Batal</a>
                         <button type="submit" class="btn btn-primary">Update</button>
+
+                        
+
                     </div>
                 </form>
             </div>

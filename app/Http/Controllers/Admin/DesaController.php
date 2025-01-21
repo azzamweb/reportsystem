@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kecamatan;
 use App\Models\Desa;
+use App\Models\Laporan;
 
 class DesaController extends Controller
 {
@@ -59,8 +60,18 @@ class DesaController extends Controller
     }
 
     public function destroy(Desa $desa)
-    {
-        $desa->delete();
-        return redirect()->route('desas.index')->with('success', 'Desa berhasil dihapus!');
+{
+    // Periksa apakah desa memiliki relasi dengan laporan
+    if ($desa->laporans()->exists()) {
+        return redirect()->route('desas.index')
+            ->with('error', 'Desa tidak dapat dihapus karena masih digunakan oleh laporan.');
     }
+
+    // Hapus desa jika tidak ada relasi
+    $desa->delete();
+
+    return redirect()->route('desas.index')
+        ->with('success', 'Desa berhasil dihapus!');
+}
+
 }

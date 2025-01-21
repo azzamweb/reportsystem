@@ -40,8 +40,18 @@ class KecamatanController extends Controller
     }
 
     public function destroy(Kecamatan $kecamatan)
-    {
-        $kecamatan->delete();
-        return redirect()->route('kecamatans.index')->with('success', 'Kecamatan berhasil dihapus!');
+{
+    // Periksa apakah kecamatan memiliki relasi dengan desa
+    if ($kecamatan->desas()->exists()) {
+        return redirect()->route('kecamatans.index')
+            ->with('error', 'Kecamatan tidak dapat dihapus karena masih digunakan oleh desa.');
     }
+
+    // Hapus kecamatan jika tidak ada relasi
+    $kecamatan->delete();
+
+    return redirect()->route('kecamatans.index')
+        ->with('success', 'Kecamatan berhasil dihapus!');
+}
+
 }

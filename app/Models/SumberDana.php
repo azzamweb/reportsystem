@@ -21,4 +21,6 @@ class SumberDana extends Model
     {
         return $this->hasMany(TindakLanjut::class, 'sumber_dana_id');
     }
+
+    
 }

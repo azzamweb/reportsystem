@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SumberDana;
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 
 class SumberDanaController extends Controller
@@ -65,8 +66,18 @@ class SumberDanaController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(SumberDana $sumberDana)
-    {
-        $sumberDana->delete();
-        return redirect()->route('sumber_dana.index')->with('success', 'Sumber Dana berhasil dihapus.');
+{
+    // Periksa apakah sumber dana sudah digunakan dalam tindak lanjut
+    if ($sumberDana->tindaklanjut()->exists()) {
+        return redirect()->route('sumber_dana.index')->with('error', 'Sumber Dana tidak dapat dihapus karena sudah digunakan pada Tindak Lanjut.');
     }
+
+    
+
+    // Hapus sumber dana
+    $sumberDana->delete();
+
+    return redirect()->route('sumber_dana.index')->with('success', 'Sumber Dana berhasil dihapus.');
+}
+
 }

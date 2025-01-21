@@ -15,4 +15,9 @@ class Desa extends Model
     {
         return $this->belongsTo(Kecamatan::class);
     }
+
+    public function laporans()
+{
+    return $this->hasMany(Laporan::class);
+}
 }
