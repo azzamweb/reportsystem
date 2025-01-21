@@ -113,46 +113,50 @@
     </div>
 
     <script>
-        $(document).ready(function () {
-            $('#laporanTable').DataTable({
-                responsive: true,
-                dom: 'Bfrtip', // Menambahkan tombol export
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class="bi bi-file-earmark-excel"></i> Excel',
-                        className: 'btn btn-success btn-sm'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: '<i class="bi bi-file-earmark-pdf"></i> PDF',
-                        className: 'btn btn-danger btn-sm'
-                    },
-                    {
-                        extend: 'print',
-                        text: '<i class="bi bi-printer"></i> Print',
-                        className: 'btn btn-secondary btn-sm'
-                    }
-                ],
-                language: {
-                    url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
-                },
-                pageLength: 10
-            });
+       $(document).ready(function () {
+    $('#laporanTable').DataTable({
+        responsive: true,
+        dom: 'Bfrtip', // Mengaktifkan fitur tombol
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: '<i class="bi bi-file-earmark-excel"></i>', // Hanya ikon
+                className: 'btn btn-outline-success btn-sm', // Gaya minimalis
+                titleAttr: 'Export to Excel' // Tooltip untuk ikon
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="bi bi-file-earmark-pdf"></i>', // Hanya ikon
+                className: 'btn btn-outline-danger btn-sm', // Gaya minimalis
+                titleAttr: 'Export to PDF' // Tooltip untuk ikon
+            },
+            {
+                extend: 'print',
+                text: '<i class="bi bi-printer"></i>', // Hanya ikon
+                className: 'btn btn-outline-secondary btn-sm', // Gaya minimalis
+                titleAttr: 'Print' // Tooltip untuk ikon
+            }
+        ],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
+        },
+        pageLength: 10
+    });
 
-            // Filters
-            $('#filterTahun').on('change', function () {
-                $('#laporanTable').DataTable().column(1).search(this.value).draw();
-            });
-            $('#filterKecamatan').on('change', function () {
-                $('#laporanTable').DataTable().column(5).search(this.value).draw();
-            });
-            $('#filterDesa').on('change', function () {
-                $('#laporanTable').DataTable().column(6).search(this.value).draw();
-            });
-            $('#filterJenis').on('change', function () {
-                $('#laporanTable').DataTable().column(7).search(this.value).draw();
-            });
-        });
+    // Filters
+    $('#filterTahun').on('change', function () {
+        $('#laporanTable').DataTable().column(1).search(this.value).draw();
+    });
+    $('#filterKecamatan').on('change', function () {
+        $('#laporanTable').DataTable().column(5).search(this.value).draw();
+    });
+    $('#filterDesa').on('change', function () {
+        $('#laporanTable').DataTable().column(6).search(this.value).draw();
+    });
+    $('#filterJenis').on('change', function () {
+        $('#laporanTable').DataTable().column(7).search(this.value).draw();
+    });
+});
+
     </script>
 </x-app-layout>
