@@ -24,7 +24,7 @@
 
         <!-- Leaflet CSS -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-        
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">        
         
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -49,6 +49,7 @@
 
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-gesture-handling"></script>
         
         
         <!-- Tambahkan ini di file layout utama -->
