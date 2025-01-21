@@ -4,7 +4,7 @@
         <!-- Filter Dropdown -->
         <div class="row g-3 px-3 py-2 bg-light filter-dropdown">
             <div class="col-md-3">
-                <label for="filterKecamatan" class="form-label">Kecamatan</label>
+                <!-- <label for="filterKecamatan" class="form-label">Kecamatan</label> -->
                 <select id="filterKecamatan" class="form-select">
                     <option value="">Semua Kecamatan</option>
                     @foreach ($kecamatans as $kecamatan)
@@ -13,7 +13,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="filterDesa" class="form-label">Desa</label>
+                <!-- <label for="filterDesa" class="form-label">Desa</label> -->
                 <select id="filterDesa" class="form-select">
                     <option value="">Semua Desa</option>
                     @foreach ($desas as $desa)
@@ -22,7 +22,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="filterJenis" class="form-label">Jenis Laporan</label>
+                <!-- <label for="filterJenis" class="form-label">Jenis Laporan</label> -->
                 <select id="filterJenis" class="form-select">
                     <option value="">Semua Jenis</option>
                     @foreach ($jenisLaporans as $jenis)
@@ -31,7 +31,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="filterStatus" class="form-label">Status Tindak Lanjut</label>
+                <!-- <label for="filterStatus" class="form-label">Status Tindak Lanjut</label> -->
                 <select id="filterStatus" class="form-select">
                     <option value="">Semua Status</option>
                     <option value="complete">Complete</option>
