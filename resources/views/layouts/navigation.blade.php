@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold text-primary" href="{{ route('dashboard') }}">
+        <!-- Logo dan Nama Aplikasi -->
+        <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="{{ route('dashboard') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Report System Logo" style="height: 50px;">
+            <span class="ms-2">Report System</span> <!-- Tambahkan nama aplikasi di sini -->
         </a>
 
         <!-- Hamburger (Toggler) -->
@@ -84,6 +85,7 @@
         </div>
     </div>
 </nav>
+
 
 <!-- Custom CSS -->
 <style>
