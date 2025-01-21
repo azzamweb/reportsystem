@@ -93,7 +93,7 @@
 
             <!-- Footer -->
             <footer class="bg-dark text-white text-center py-3">
-                <small>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</small>
+                <small>&copy; {{ date('Y') }} Report System. by <a href="https://hermanspace.id" style="color: white">hspace</a></small>
             </footer>
         </div>
 

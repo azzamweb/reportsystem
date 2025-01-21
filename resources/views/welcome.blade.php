@@ -128,7 +128,7 @@
         </main>
 
         <footer>
-            &copy; {{ date('Y') }} Report System. All rights reserved.
+            &copy; {{ date('Y') }} Report System. by <a href="https://hermanspace.id" style="color: white">hspace</a>
         </footer>
     </body>
 </html>
