@@ -48,13 +48,15 @@
                     </div>
 
                     <!-- Forgot Password and Submit Button -->
-                    <div class="d-flex justify-content-between align-items-center">
-                        <!-- @if (Route::has('password.request'))
-                            <a class="text-decoration-none text-primary small" href="{{ route('password.request') }}">Forgot your password?</a>
-                        @endif -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
                         <button type="submit" class="btn btn-primary">Log in</button>
                     </div>
                 </form>
+
+                <!-- Back to Homepage -->
+                <div class="text-center">
+                    <a href="{{ url('/') }}" class="text-decoration-none text-primary small">Back to Homepage</a>
+                </div>
             </div>
         </div>
     </div>
